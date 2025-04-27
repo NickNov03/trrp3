@@ -1,0 +1,25 @@
+syntax = "proto3";
+package buildorders;
+
+service BuildOrderService {
+  rpc SendOrder (BuildOrder) returns (StatusResponse);
+  rpc FinishUpload (FinishRequest) returns (StatusResponse);
+}
+
+message BuildOrder {
+  int32 id_order = 1;
+  string address = 2;
+  string work_stages = 3;
+  string work_prices = 4;
+  string materials = 5;
+  string material_quantities = 6;
+  string material_prices = 7;
+}
+
+message StatusResponse {
+  string status = 1;
+}
+
+message FinishRequest {
+    string message = 1; // например, "finish"
+}

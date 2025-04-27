@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  server:
+    build: ./server
+    container_name: lab3server
+    volumes:
+      - ./output:/app/output
+      - ./certs:/app/certs
+    depends_on:
+      - postgres
+    ports:
+      - "20000:20000"
+    networks:
+      - backend
+    command: tail -f /dev/null  # <--- ничего не запускает, просто "висит"
+
+  postgres:
+    image: postgres:13
+    container_name: postgres
+    environment:
+      POSTGRES_DB: constructioncompany
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "25432:5432"
+    volumes:
+      - ./db-init:/docker-entrypoint-initdb.d
+    networks:
+      - backend
+
+networks:
+  backend:
+    driver: bridge

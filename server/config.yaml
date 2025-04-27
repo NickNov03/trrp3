@@ -1,0 +1,26 @@
+server_ip: "0.0.0.0" #'localhost' #"0.0.0.0" #'127.0.0.1'
+server_port: 20000
+
+# FnBk79gU3X&y
+
+db_name: "constructioncompany"
+db_user: "postgres"
+db_password: "postgres"
+db_host: "postgres" #"localhost"
+db_port: "5432"
+
+certs_path: 'certs/'
+'server_key': 'server.key'
+'server_cert': 'server.crt'
+'ca_cert': 'ca.crt'
+
+# db_name: "constructioncompany"
+# db_user: "postgres"
+# db_password: "postgres"
+# db_host: "localhost"
+# db_port: "5432"
+
+# certs_path: 'D:\TRRP\lab3\certs\'
+# 'server_key': 'server.key'
+# 'server_cert': 'server.crt'
+# 'ca_cert': 'ca.crt'
