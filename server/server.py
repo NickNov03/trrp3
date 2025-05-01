@@ -5,7 +5,7 @@ import yaml
 import grpc
 from concurrent import futures
 import sys
-# sys.path.append(r'D:\TRRP\lab3')
+sys.path.append(r'/app/grpc/')
 import build_orders_pb2
 import build_orders_pb2_grpc
 import analysis
