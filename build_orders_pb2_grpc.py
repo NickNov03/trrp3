@@ -34,14 +34,9 @@ class BuildOrderServiceStub(object):
         Args:
             channel: A grpc.Channel.
         """
-        self.SendOrder = channel.unary_unary(
-                '/buildorders.BuildOrderService/SendOrder',
+        self.SendOrders = channel.stream_unary(
+                '/buildorders.BuildOrderService/SendOrders',
                 request_serializer=build__orders__pb2.BuildOrder.SerializeToString,
-                response_deserializer=build__orders__pb2.StatusResponse.FromString,
-                _registered_method=True)
-        self.FinishUpload = channel.unary_unary(
-                '/buildorders.BuildOrderService/FinishUpload',
-                request_serializer=build__orders__pb2.FinishRequest.SerializeToString,
                 response_deserializer=build__orders__pb2.StatusResponse.FromString,
                 _registered_method=True)
 
@@ -49,13 +44,7 @@ class BuildOrderServiceStub(object):
 class BuildOrderServiceServicer(object):
     """Missing associated documentation comment in .proto file."""
 
-    def SendOrder(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def FinishUpload(self, request, context):
+    def SendOrders(self, request_iterator, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -64,14 +53,9 @@ class BuildOrderServiceServicer(object):
 
 def add_BuildOrderServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
-            'SendOrder': grpc.unary_unary_rpc_method_handler(
-                    servicer.SendOrder,
+            'SendOrders': grpc.stream_unary_rpc_method_handler(
+                    servicer.SendOrders,
                     request_deserializer=build__orders__pb2.BuildOrder.FromString,
-                    response_serializer=build__orders__pb2.StatusResponse.SerializeToString,
-            ),
-            'FinishUpload': grpc.unary_unary_rpc_method_handler(
-                    servicer.FinishUpload,
-                    request_deserializer=build__orders__pb2.FinishRequest.FromString,
                     response_serializer=build__orders__pb2.StatusResponse.SerializeToString,
             ),
     }
@@ -86,7 +70,7 @@ class BuildOrderService(object):
     """Missing associated documentation comment in .proto file."""
 
     @staticmethod
-    def SendOrder(request,
+    def SendOrders(request_iterator,
             target,
             options=(),
             channel_credentials=None,
@@ -96,38 +80,11 @@ class BuildOrderService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(
-            request,
+        return grpc.experimental.stream_unary(
+            request_iterator,
             target,
-            '/buildorders.BuildOrderService/SendOrder',
+            '/buildorders.BuildOrderService/SendOrders',
             build__orders__pb2.BuildOrder.SerializeToString,
-            build__orders__pb2.StatusResponse.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-            _registered_method=True)
-
-    @staticmethod
-    def FinishUpload(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(
-            request,
-            target,
-            '/buildorders.BuildOrderService/FinishUpload',
-            build__orders__pb2.FinishRequest.SerializeToString,
             build__orders__pb2.StatusResponse.FromString,
             options,
             channel_credentials,

@@ -2,8 +2,7 @@ syntax = "proto3";
 package buildorders;
 
 service BuildOrderService {
-  rpc SendOrder (BuildOrder) returns (StatusResponse);
-  rpc FinishUpload (FinishRequest) returns (StatusResponse);
+  rpc SendOrders (stream BuildOrder) returns (StatusResponse);
 }
 
 message BuildOrder {
@@ -18,8 +17,4 @@ message BuildOrder {
 
 message StatusResponse {
   string status = 1;
-}
-
-message FinishRequest {
-    string message = 1; // например, "finish"
 }

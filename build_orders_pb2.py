@@ -24,7 +24,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x12\x62uild_orders.proto\x12\x0b\x62uildorders\"\xa2\x01\n\nBuildOrder\x12\x10\n\x08id_order\x18\x01 \x01(\x05\x12\x0f\n\x07\x61\x64\x64ress\x18\x02 \x01(\t\x12\x13\n\x0bwork_stages\x18\x03 \x01(\t\x12\x13\n\x0bwork_prices\x18\x04 \x01(\t\x12\x11\n\tmaterials\x18\x05 \x01(\t\x12\x1b\n\x13material_quantities\x18\x06 \x01(\t\x12\x17\n\x0fmaterial_prices\x18\x07 \x01(\t\" \n\x0eStatusResponse\x12\x0e\n\x06status\x18\x01 \x01(\t\" \n\rFinishRequest\x12\x0f\n\x07message\x18\x01 \x01(\t2\x9f\x01\n\x11\x42uildOrderService\x12\x41\n\tSendOrder\x12\x17.buildorders.BuildOrder\x1a\x1b.buildorders.StatusResponse\x12G\n\x0c\x46inishUpload\x12\x1a.buildorders.FinishRequest\x1a\x1b.buildorders.StatusResponseb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x12\x62uild_orders.proto\x12\x0b\x62uildorders\"\xa2\x01\n\nBuildOrder\x12\x10\n\x08id_order\x18\x01 \x01(\x05\x12\x0f\n\x07\x61\x64\x64ress\x18\x02 \x01(\t\x12\x13\n\x0bwork_stages\x18\x03 \x01(\t\x12\x13\n\x0bwork_prices\x18\x04 \x01(\t\x12\x11\n\tmaterials\x18\x05 \x01(\t\x12\x1b\n\x13material_quantities\x18\x06 \x01(\t\x12\x17\n\x0fmaterial_prices\x18\x07 \x01(\t\" \n\x0eStatusResponse\x12\x0e\n\x06status\x18\x01 \x01(\t2Y\n\x11\x42uildOrderService\x12\x44\n\nSendOrders\x12\x17.buildorders.BuildOrder\x1a\x1b.buildorders.StatusResponse(\x01\x62\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -35,8 +35,6 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['_BUILDORDER']._serialized_end=198
   _globals['_STATUSRESPONSE']._serialized_start=200
   _globals['_STATUSRESPONSE']._serialized_end=232
-  _globals['_FINISHREQUEST']._serialized_start=234
-  _globals['_FINISHREQUEST']._serialized_end=266
-  _globals['_BUILDORDERSERVICE']._serialized_start=269
-  _globals['_BUILDORDERSERVICE']._serialized_end=428
+  _globals['_BUILDORDERSERVICE']._serialized_start=234
+  _globals['_BUILDORDERSERVICE']._serialized_end=323
 # @@protoc_insertion_point(module_scope)

@@ -15,29 +15,23 @@ CONFIG_PATH = r'config.yaml'
 
 class BuildOrderService(build_orders_pb2_grpc.BuildOrderServiceServicer):
     def __init__(self):
-        # with open(r'config.yaml', 'r', encoding='utf8') as file:
         with open(CONFIG_PATH, 'r', encoding='utf8') as file:
             self.params = yaml.safe_load(file)
         self.w = W(self.params)
 
-        self.orders = []
+    def SendOrders(self, request_iterator, context):
+        orders = []
+        for request in request_iterator:
+            print(f"📥 Получен заказ ID {request.id_order}")
+            data = [
+                request.id_order, request.address, request.work_stages,
+                request.work_prices, request.materials,
+                request.material_quantities, request.material_prices
+            ]
+            orders.append(data)
 
-    def SendOrder(self, request, context):
-        print(f"📥 Получен заказ ID {request.id_order}")
-        # print(type(request))
-        # print(request.material_prices)
-        data = [request.id_order, request.address, request.work_stages, \
-                request.work_prices, request.materials, \
-                    request.material_quantities, request.material_prices]
-        self.orders.append(data)        
-
-        return build_orders_pb2.StatusResponse(status="OK")
-    
-    def FinishUpload(self, request, context):
-        print("ended")
-
-        self.w.write(self.orders)
-        analysis.run_js_analysis(self.orders)
+        self.w.write(orders)
+        analysis.run_js_analysis(orders)
 
         return build_orders_pb2.StatusResponse(status="OK")
 
